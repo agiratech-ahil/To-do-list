@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>To Do List</title>
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat&family=Poppins:wght@200&family=Red+Hat+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./icon.jpg" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome back, Ahil</h1>
+      <h4>
+        You've got below
+        <!-- <span><input type="text" id="total" disabled placeholder="0" /></span
+        > -->
+        tasks coming up in the upcoming days
+      </h4>
+      <form id="list" class="To-do list">
+        <input
+          id="checkbox"
+          class="check"
+          type="checkbox"
+          onclick="openDescription()"
+        />
+        <input
+          id="task"
+          type="text"
+          class="text"
+          placeholder="Add a new task...."
+        />
+
+        <!-- <button type="submit" id="btnclick" onclick="addMore()">+</button> -->
+        <ul id="mylist" class="li" onclick="removeItem()"></ul>
+        <!-- <span id="error"></span> -->
+      </form>
+      <!-- <div id="another"> -->
+      <input type="checkbox" id="second" onclick="displayDescription()" />
+      <input type="textarea" id="text" placeholder="Add a short description" />
+      <!-- </div> -->
+      <input type="checkbox" id="third" onclick="openTag()" />
+      <input type="textarea" id="thirdtext" placeholder="Add a tag!" />
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
