@@ -31,14 +31,36 @@ function openDescription() {
 function displayDescription() {
   var sectext = document.getElementById("text");
   var secch = document.getElementById("second");
-
+  let des = JSON.parse(localStorage.getItem("desc"));
   if (secch.checked == true) {
-    sectext.style.display = "block";
+    if (des === null) {
+      deslist = [];
+    } else {
+      deslist = des;
+    }
 
-    list.innerHTML += "<h3 >" + des.value + "</h3>";
+    deslist.push(sectext.value);
+    localStorage.setItem("desc", JSON.stringify(deslist));
   }
-  des.value = "";
-  store();
+  showDes();
+  showTag();
+}
+
+function showDes() {
+  let des = JSON.parse(localStorage.getItem("desc"));
+  var desoutPut = "";
+  var showlist1 = document.querySelector(".secondli");
+
+  if (des === null) {
+    deslist = [];
+  } else {
+    deslist = des;
+  }
+  deslist.forEach((data, index) => {
+    desoutPut += `<p>${data}</p>`;
+  });
+  console.log(desoutPut);
+  showlist1.innerHTML = desoutPut;
 }
 
 //Opening a tag
@@ -46,38 +68,74 @@ function displayDescription() {
 function openTag() {
   var thirdtext = document.getElementById("thirdtext");
   var thir = document.getElementById("third");
+  let tagItems = JSON.parse(localStorage.getItem("tagItem"));
   if (thir.checked == true) {
-    thirdtext.style.display = "block";
-    list.innerHTML += "<h6 >" + thi.value + "<h6>";
+    if (tagItems === null) {
+      taglist = [];
+    } else {
+      taglist = tagItems;
+    }
+    taglist.push(thirdtext.value);
+    localStorage.setItem("tagItem", JSON.stringify(taglist));
   }
-  thi.value = "";
-  store();
+  showTag();
+}
+
+function showTag() {
+  var thirdtext = document.getElementById("thirdtext");
+  var tagItems = JSON.parse(localStorage.getItem("tagItem"));
+  let tagoutPut = "";
+  let showlist = document.querySelector(".thirdli");
+
+  if (tagItems === null) {
+    taglist = [];
+  } else {
+    taglist = tagItems;
+  }
+
+  taglist.forEach((data, index) => {
+    tagoutPut += `<h6>${data}</h6>`;
+  });
+  console.log(tagoutPut);
+  showlist.innerHTML = tagoutPut;
 }
 
 //Submitting the title
+const inputval = document.getElementById("task");
 
-form.addEventListener(
-  "submit",
-  function (e) {
-    e.preventDefault();
+form.addEventListener("submit", () => {
+  let localItems = JSON.parse(localStorage.getItem("localItem"));
 
-    if (item.value == "") {
-      alert("Please enter a title");
-    } else {
-      list.innerHTML += "<li>" + item.value + "</li>";
-    }
-    store();
-    item.value = "";
-    console.log(item.value);
+  if (localItems === null) {
+    tasklist = [];
+  } else {
+    tasklist = localItems;
+  }
 
-    // let no = document
-    //   .getElementById("mylist")
-    //   .getElementsByTagName("li").length;
-    // document.getElementById("total").value = no;
-    // store();
-  },
-  false
-);
+  tasklist.push(inputval.value);
+  localStorage.setItem("localItem", JSON.stringify(tasklist));
+});
+
+showDescription();
+
+function showDescription() {
+  let localItems = JSON.parse(localStorage.getItem("localItem"));
+
+  let outPut = "";
+  let displayList = document.querySelector(".lists");
+  if (localItems === null) {
+    tasklist = [];
+  } else {
+    tasklist = localItems;
+  }
+  tasklist.forEach((data, index) => {
+    outPut += `<li>${data}</li>`;
+  });
+
+  displayList.innerHTML = outPut;
+  showDes();
+  showTag();
+}
 //Check and clear the completed
 
 list.addEventListener(
@@ -90,20 +148,7 @@ list.addEventListener(
     } else {
       t.classList.add("checked");
     }
-    store();
   },
+
   false
 );
-
-function store() {
-  window.localStorage.myitems = list.innerHTML;
-}
-
-function getValues() {
-  var storedValues = window.localStorage.myitems;
-  if (!storedValues) {
-  } else {
-    list.innerHTML = storedValues;
-  }
-}
-getValues();
