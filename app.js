@@ -1,11 +1,3 @@
-var list = document.querySelector("#mylist");
-var form = document.querySelector("form");
-var item = document.querySelector("#task");
-
-var des = document.querySelector("#text");
-var sd = document.querySelector("#another");
-var thi = document.querySelector("#thirdtext");
-
 //Opening a textbox for Description and tag
 
 function openDescription() {
@@ -26,128 +18,80 @@ function openDescription() {
     thirdtxt.style.display = "none";
   }
 }
-//Displaying the description
 
-function displayDescription() {
-  var sectext = document.getElementById("text");
-  var secch = document.getElementById("second");
-  let des = JSON.parse(localStorage.getItem("desc"));
-  if (secch.checked == true) {
-    if (des === null) {
-      deslist = [];
-    } else {
-      deslist = des;
-    }
+//storinng the data
 
-    deslist.push(sectext.value);
-    localStorage.setItem("desc", JSON.stringify(deslist));
-  }
-  showDes();
-  showTag();
-}
+function setdata() {
+  var text1 = document.getElementById("task").value;
 
-function showDes() {
-  let des = JSON.parse(localStorage.getItem("desc"));
-  var desoutPut = "";
-  var showlist1 = document.querySelector(".secondli");
-
-  if (des === null) {
-    deslist = [];
+  let first = document.getElementById("task").value;
+  let des = document.getElementById("text").value;
+  let tag = document.getElementById("thirdtext").value;
+  let lists = {
+    title: first,
+    description: des,
+    tags: tag,
+  };
+  let arr1 = [];
+  let deslist = JSON.parse(localStorage.getItem("tasks"));
+  if (deslist != null) {
+    deslist.push(lists);
+    localStorage.setItem("tasks", JSON.stringify(deslist));
   } else {
-    deslist = des;
+    arr1.push(lists);
+    console.log(arr1);
+    localStorage.setItem("tasks", JSON.stringify(arr1));
   }
-  deslist.forEach((data, index) => {
-    desoutPut += `<p>${data}</p>`;
-  });
-  console.log(desoutPut);
-  showlist1.innerHTML = desoutPut;
+
+  showdata();
 }
+//displaying the data
 
-//Opening a tag
+showdata();
+function showdata() {
+  let task = JSON.parse(localStorage.getItem("tasks"));
 
-function openTag() {
-  var thirdtext = document.getElementById("thirdtext");
-  var thir = document.getElementById("third");
-  let tagItems = JSON.parse(localStorage.getItem("tagItem"));
-  if (thir.checked == true) {
-    if (tagItems === null) {
-      taglist = [];
-    } else {
-      taglist = tagItems;
-    }
-    taglist.push(thirdtext.value);
-    localStorage.setItem("tagItem", JSON.stringify(taglist));
-  }
-  showTag();
-}
+  let output = "";
 
-function showTag() {
-  var thirdtext = document.getElementById("thirdtext");
-  var tagItems = JSON.parse(localStorage.getItem("tagItem"));
-  let tagoutPut = "";
-  let showlist = document.querySelector(".thirdli");
+  let displaytitle = document.querySelector("#newli");
 
-  if (tagItems === null) {
-    taglist = [];
-  } else {
-    taglist = tagItems;
-  }
-
-  taglist.forEach((data, index) => {
-    tagoutPut += `<h6>${data}</h6>`;
-  });
-  console.log(tagoutPut);
-  showlist.innerHTML = tagoutPut;
-}
-
-//Submitting the title
-const inputval = document.getElementById("task");
-
-form.addEventListener("submit", () => {
-  let localItems = JSON.parse(localStorage.getItem("localItem"));
-
-  if (localItems === null) {
-    tasklist = [];
-  } else {
-    tasklist = localItems;
-  }
-
-  tasklist.push(inputval.value);
-  localStorage.setItem("localItem", JSON.stringify(tasklist));
-});
-
-showDescription();
-
-function showDescription() {
-  let localItems = JSON.parse(localStorage.getItem("localItem"));
-
-  let outPut = "";
-  let displayList = document.querySelector(".lists");
-  if (localItems === null) {
-    tasklist = [];
-  } else {
-    tasklist = localItems;
-  }
-  tasklist.forEach((data, index) => {
-    outPut += `<li>${data}</li>`;
+  task.forEach((arr1) => {
+    output += ` <li>${arr1.title}</li>`;
+    output += `<p>${arr1.description}</p>`;
+    output += ` <h6>${arr1.tags}</h6>`;
   });
 
-  displayList.innerHTML = outPut;
-  showDes();
-  showTag();
+  displaytitle.innerHTML = output;
+  let no = document.getElementById("newli").getElementsByTagName("li").length;
+  {
+    document.getElementById("total").value = no;
+  }
 }
-//Check and clear the completed
 
+// function deleteItem() {
+//   localStorage.removeItem("title");
+// }
+
+var list = document.querySelector("#newli");
 list.addEventListener(
   "click",
   function (e) {
+    let arr1 = [];
+    localStorage.setItem("tasks", JSON.stringify(arr1));
     var t = e.target;
     if (t.classList.contains("checked")) {
       t.style.textDecoration = "line-through";
-      t.parentNode.removeChild(t);
+      t.style.display = "none";
+      localStorage.removeClass(tasks.value);
     } else {
       t.classList.add("checked");
     }
+    // let task1 = Array.from(JSON.parse(localStorage.getItem("tasks")));
+    // task1.forEach((list) => {
+    //   if (list.list === e.parentNode.children[1].value) {
+    //     task1.splice(task1.indexOf(list), 1);
+    //   }
+    // });
   },
 
   false

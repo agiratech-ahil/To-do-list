@@ -19,9 +19,8 @@
       <h4>
         You've got below
         <span id="tot"
-          ><input type="text" id="total" disabled placeholder="0"
-        /></span>
-        tasks coming up in the upcoming days
+          ><input type="text" id="total" disabled placeholder="0" /></span
+        >tasks coming up in the upcoming days
       </h4>
       <form id="list" class="To-do list">
         <input
@@ -37,19 +36,12 @@
           placeholder="Add a new task...."
         />
 
-        <!-- <button type="submit" id="btnclick" onclick="addMore()">+</button> -->
-
-        <!-- <span id="error"></span> -->
+        <div id="newli"></div>
       </form>
-      <!-- <div id="another"> -->
 
-      <!-- </div> -->
-      <ul id="mylist" class="lists" onclick="removeItem()"></ul>
-      <div class="secondli"></div>
-      <input type="checkbox" id="second" onclick="displayDescription()" />
+      <input type="checkbox" id="second" onclick="setdata(),showdata()" />
       <input type="textarea" id="text" placeholder="Add a short description" />
-      <div class="thirdli"></div>
-      <input type="checkbox" id="third" onclick="openTag()" />
+      <input type="checkbox" id="third" onclick="" />
       <input
         type="textarea"
         id="thirdtext"
