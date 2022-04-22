@@ -48,13 +48,12 @@ li {
   font-weight: 600;
 }
 li {
-  /* display: flex; */
-
+  text-transform: capitalize;
   line-height: 3;
   margin-right: 40%;
-  margin-left: -45px;
+  padding-left: 48px;
   height: 15vh;
-
+  overflow: hidden;
   margin-bottom: 1.5%;
   border-radius: 10px;
   font-size: 30px;
@@ -63,27 +62,22 @@ li {
   box-sizing: border-box;
   box-shadow: 1px 2px 0px rgb(241, 227, 227);
 }
-li:before {
-  content: "\25A1";
-  padding: 10px 10px;
-  font-size: 20px;
-  border-radius: 2%;
+#li {
+  margin-right: 2%;
 }
 
-.checked {
-  color: green;
+.mainc {
+  position: absolute;
+  margin-left: 0.1%;
+  margin-top: 1.9%;
+  height: 1.5vh;
+  width: 1.5%;
+}
+
+input[type="checkbox"]:checked + li.mainli {
   text-decoration: line-through;
-}
-
-.checked:before {
-  content: "\2713";
-  padding: 10px 10px;
-  font-size: 20px;
-}
-
-.checked:after {
-  color: tomato;
-  text-align: right;
+  color: rgb(103, 160, 18);
+  font-style: italic;
 }
 
 #total {
@@ -102,7 +96,7 @@ li:before {
 }
 #text {
   margin-left: 2%;
-  margin-top: -1.5%;
+  margin-top: 0%;
   border: none;
   font-size: 18px;
   outline: none;
@@ -119,6 +113,8 @@ h3 {
 }
 #second {
   box-shadow: 1px 1px 2px rgb(212, 211, 211);
+  margin-top: 0.5%;
+  position: absolute;
 }
 #thirdtext {
   margin-left: 2%;
@@ -141,19 +137,13 @@ h4 {
 }
 
 h6 {
-  /* display: inline-flex;*/
-  /* position: absolute; */
-
   position: inherit;
   width: 7%;
   height: 2vh;
   margin-top: -4%;
-  margin-left: 1%;
-  /* margin-bottom: 5%; */
+  margin-left: 3%;
   border: 1px solid rgb(168, 167, 167);
-
   border-radius: 10px;
-
   text-align: center;
 }
 
@@ -162,23 +152,21 @@ h6 {
 }
 #mylist {
   overflow: hidden;
-  /* position: fixed; */
 }
 
 ul {
-  /* display: inlilne-flex; */
-  width: 100%;
+  width: 80%;
 }
 p {
   position: absolute;
-
-  width: 7%;
-  height: 2vh;
+  width: 85%;
+  height: 4vh;
   margin-top: -5.5%;
-  margin-left: 1%;
-  /* margin-bottom: 5%; */
+  margin-left: 3%;
   background-color: transparent;
   border-radius: 10px;
-
-  text-align: center;
+  overflow-x: scroll;
+}
+::-webkit-scrollbar {
+  display: none;
 }

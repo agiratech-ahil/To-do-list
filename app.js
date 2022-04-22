@@ -22,27 +22,38 @@ function openDescription() {
 //storinng the data
 
 function setdata() {
-  var text1 = document.getElementById("task").value;
-
+  var text1 = document.getElementById("task");
+  var sec = document.getElementById("second");
   let first = document.getElementById("task").value;
   let des = document.getElementById("text").value;
   let tag = document.getElementById("thirdtext").value;
-  let lists = {
-    title: first,
-    description: des,
-    tags: tag,
-  };
-  let arr1 = [];
-  let deslist = JSON.parse(localStorage.getItem("tasks"));
-  if (deslist != null) {
-    deslist.push(lists);
-    localStorage.setItem("tasks", JSON.stringify(deslist));
+  if (first === "") {
+    alert("Please enter the title");
+  } else if (des === "") {
+    alert("Please enter the description");
+  } else if (tag === "") {
+    alert("Please enter the tag");
   } else {
-    arr1.push(lists);
-    console.log(arr1);
-    localStorage.setItem("tasks", JSON.stringify(arr1));
+    let lists = {
+      title: first,
+      description: des,
+      tags: tag,
+    };
+    let arr1 = [];
+    let deslist = JSON.parse(localStorage.getItem("tasks"));
+    if (sec.checked == true) {
+      if (deslist != null) {
+        deslist.push(lists);
+        localStorage.setItem("tasks", JSON.stringify(deslist));
+      } else {
+        arr1.push(lists);
+        console.log(arr1);
+        localStorage.setItem("tasks", JSON.stringify(arr1));
+      }
+    }
   }
 
+  cleartext();
   showdata();
 }
 //displaying the data
@@ -50,17 +61,14 @@ function setdata() {
 showdata();
 function showdata() {
   let task = JSON.parse(localStorage.getItem("tasks"));
-
   let output = "";
-
   let displaytitle = document.querySelector("#newli");
 
-  task.forEach((arr1) => {
-    output += ` <li>${arr1.title}</li>`;
+  task.forEach((arr1, index) => {
+    output += `<input class="mainc" type="checkbox"> <li class="mainli" id="li" onclick="deleteItem(${index})">${arr1.title}</li>`;
     output += `<p>${arr1.description}</p>`;
     output += ` <h6>${arr1.tags}</h6>`;
   });
-
   displaytitle.innerHTML = output;
   let no = document.getElementById("newli").getElementsByTagName("li").length;
   {
@@ -68,31 +76,26 @@ function showdata() {
   }
 }
 
-// function deleteItem() {
-//   localStorage.removeItem("title");
-// }
+//Deleting the task
 
-var list = document.querySelector("#newli");
-list.addEventListener(
-  "click",
-  function (e) {
-    let arr1 = [];
-    localStorage.setItem("tasks", JSON.stringify(arr1));
-    var t = e.target;
-    if (t.classList.contains("checked")) {
-      t.style.textDecoration = "line-through";
-      t.style.display = "none";
-      localStorage.removeClass(tasks.value);
-    } else {
-      t.classList.add("checked");
-    }
-    // let task1 = Array.from(JSON.parse(localStorage.getItem("tasks")));
-    // task1.forEach((list) => {
-    //   if (list.list === e.parentNode.children[1].value) {
-    //     task1.splice(task1.indexOf(list), 1);
-    //   }
-    // });
-  },
+function deleteItem(index) {
+  let task = JSON.parse(localStorage.getItem("tasks"));
+  task.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(task));
+  showdata();
+}
 
-  false
-);
+//clear the text after giving enter
+
+function cleartext() {
+  var text1 = document.getElementById("task");
+  var sec = document.getElementById("second");
+  let des = document.getElementById("text");
+  let tag = document.getElementById("thirdtext");
+
+  if (sec.checked == true) {
+    text1.value = "";
+    des.value = "";
+    tag.value = "";
+  }
+}
