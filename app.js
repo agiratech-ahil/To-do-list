@@ -8,8 +8,8 @@ function openDescription() {
   var thirdch = document.getElementById("third");
   if (inp.checked == true) {
     text.style.display = "flex";
-    sec.style.display = "grid";
-    thirdtxt.style.display = "grid";
+    sec.style.display = "flex";
+    thirdtxt.style.display = "flex";
     third.style.display = "grid";
   } else {
     text.style.display = "none";
@@ -27,6 +27,7 @@ function setdata() {
   let first = document.getElementById("task").value;
   let des = document.getElementById("text").value;
   let tag = document.getElementById("thirdtext").value;
+  var thirdch = document.getElementById("third");
   if (first === "") {
     alert("Please enter the title");
   } else if (des === "") {
@@ -41,7 +42,7 @@ function setdata() {
     };
     let arr1 = [];
     let deslist = JSON.parse(localStorage.getItem("tasks"));
-    if (sec.checked == true) {
+    if (thirdch.checked == true) {
       if (deslist != null) {
         deslist.push(lists);
         localStorage.setItem("tasks", JSON.stringify(deslist));
@@ -60,12 +61,13 @@ function setdata() {
 
 showdata();
 function showdata() {
+  let licheck = document.getElementsByClassName("mainc");
   let task = JSON.parse(localStorage.getItem("tasks"));
   let output = "";
   let displaytitle = document.querySelector("#newli");
 
   task.forEach((arr1, index) => {
-    output += `<input class="mainc" type="checkbox"> <li class="mainli" id="li" onclick="deleteItem(${index})">${arr1.title}</li>`;
+    output += `<input class="mainc" type="checkbox"><b><li class="mainli" id="li" >${arr1.title}</li></b><i id="delete" class="fa-solid fa-trash-can" type="submit" onclick="deleteItem(${index})"></i>`;
     output += `<p>${arr1.description}</p>`;
     output += ` <h6>${arr1.tags}</h6>`;
   });
@@ -73,6 +75,11 @@ function showdata() {
   let no = document.getElementById("newli").getElementsByTagName("li").length;
   {
     document.getElementById("total").value = no;
+  }
+  if (licheck.checked == true) {
+    document.getElementById("delete").value.style.display = "block";
+  } else {
+    document.getElementById("delete").value.style.display = "none";
   }
 }
 
@@ -93,7 +100,9 @@ function cleartext() {
   let des = document.getElementById("text");
   let tag = document.getElementById("thirdtext");
 
-  if (sec.checked == true) {
+  var thirdch = document.getElementById("third");
+
+  if (thirdch.checked == true) {
     text1.value = "";
     des.value = "";
     tag.value = "";

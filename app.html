@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat&family=Poppins:wght@200&family=Red+Hat+Display&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nunito+Sans:wght@300&family=Poppins:wght@200&family=Red+Hat+Display&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="./icon.jpg" />
@@ -35,23 +35,30 @@
           class="text"
           placeholder="Add a new task...."
         />
-
-        <div id="newli">
-          <li class="lis"></li>
-          <h6></h6>
-        </div>
+        <input type="checkbox" id="second" onclick="" />
+        <input
+          type="textarea"
+          id="text"
+          placeholder="Add a short description"
+        />
+        <input type="checkbox" id="third" onclick="setdata()" />
+        <input
+          type="textarea"
+          id="thirdtext"
+          class="thirdtxt"
+          placeholder="Add a tag!"
+        />
       </form>
-
-      <input type="checkbox" id="second" onclick="setdata()" />
-      <input type="textarea" id="text" placeholder="Add a short description" />
-      <input type="checkbox" id="third" onclick="" />
-      <input
-        type="textarea"
-        id="thirdtext"
-        class="thirdtxt"
-        placeholder="Add a tag!"
-      />
+      <div id="newli">
+        <li></li>
+        <h6></h6>
+        <button>x</button>
+      </div>
     </div>
     <script src="./app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f411cc5e95.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
