@@ -100,7 +100,7 @@ function showdata() {
 
 function deleteItem(index) {
   let task = JSON.parse(localStorage.getItem("tasks"));
-  task.splice(index, 1);
+  task.splice(index);
   localStorage.setItem("tasks", JSON.stringify(task));
   showdata();
 }
