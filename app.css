@@ -18,6 +18,18 @@ h4 {
 form {
   display: inline-flex;
 }
+p {
+  position: absolute;
+  width: 85%;
+  height: 4vh;
+  font-size: 25px;
+  margin-top: -7%;
+  margin-left: 3%;
+  background-color: transparent;
+  border-radius: 10px;
+  overflow-x: scroll;
+  color: rgb(97, 97, 97);
+}
 .check {
   width: 15px;
   height: 15px;
@@ -60,7 +72,7 @@ li {
   line-height: 3;
   margin-right: 40%;
   padding-left: 48px;
-  height: 15vh;
+  height: 20vh;
   overflow: hidden;
   margin-bottom: 2%;
   border-radius: 15px;
@@ -94,11 +106,6 @@ input[type="checkbox"]:checked + b {
   font-style: italic;
 }
 
-/* #delete {
-  display: flex;
-  position: absolute;
-} */
-
 #total {
   width: 2%;
   outline: none;
@@ -114,12 +121,18 @@ input[type="checkbox"]:checked + b {
   margin-top: 20%;
 }
 #text {
-  margin-left: 0%;
-  margin-top: 0%;
   border: none;
   font-size: 18px;
   outline: none;
   color: grey;
+}
+#delete {
+  position: absolute;
+  margin-top: -11%;
+  margin-left: 70%;
+  border: none;
+  color: rgb(218, 213, 213);
+  cursor: pointer;
 }
 h3 {
   position: absolute;
@@ -182,28 +195,11 @@ h6 {
 ul {
   width: 80%;
 }
-p {
-  position: absolute;
-  width: 85%;
-  height: 4vh;
-  margin-top: -5.5%;
-  margin-left: 3%;
-  background-color: transparent;
-  border-radius: 10px;
-  overflow-x: scroll;
-  color: grey;
-}
+
 ::-webkit-scrollbar {
   display: none;
 }
-#delete {
-  position: absolute;
-  margin-top: -8%;
-  margin-left: 70%;
-  border: none;
-  color: rgb(218, 213, 213);
-  cursor: pointer;
-}
+
 #delete:hover {
   color: red;
   size: 5%;
