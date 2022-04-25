@@ -17,12 +17,13 @@ h4 {
 
 form {
   display: inline-flex;
+  margin-top: 4%;
 }
 p {
   position: absolute;
   width: 85%;
   height: 4vh;
-  font-size: 25px;
+  font-size: 28px;
   margin-top: -7%;
   margin-left: 3%;
   background-color: transparent;
@@ -176,13 +177,15 @@ h4 {
 h6 {
   position: inherit;
   width: 7%;
-  height: 2vh;
-  margin-top: -4%;
+  height: 3vh;
+  margin-top: -5%;
   margin-left: 3%;
-  border: 1px solid rgb(168, 167, 167);
+  border: 1px solid rgb(199, 197, 197);
   border-radius: 10px;
   text-align: center;
-  line-height: 2;
+  line-height: 1.5;
+  font-size: 18px;
+  background-color: transparent;
 }
 
 .thirdli {
