@@ -22,8 +22,6 @@ function openDescription() {
 //storinng the data
 
 function setdata() {
-  var text1 = document.getElementById("task");
-  var sec = document.getElementById("second");
   let first = document.getElementById("task").value;
   let des = document.getElementById("text").value;
   let tag = document.getElementById("thirdtext").value;
@@ -62,7 +60,6 @@ function setdata() {
 
 showdata();
 function showdata() {
-  let licheck = document.getElementsByClassName("mainc");
   let task = JSON.parse(localStorage.getItem("tasks"));
   let output = "";
   let displaytitle = document.querySelector("#newli");
@@ -77,7 +74,7 @@ function showdata() {
   task.forEach((arr1, index) => {
     document.getElementById(index + "mainch").checked = arr1.ischecked;
     let licheck = document.getElementById(index + "mainch");
-    let deleteb = document.getElementById(index + "delete");
+
     let finalli = document.getElementById("li");
     if (licheck.checked == true) {
       finalli.style.textDecoration = "line-through";
