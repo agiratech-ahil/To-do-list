@@ -39,6 +39,7 @@ function setdata() {
       title: first,
       description: des,
       tags: tag,
+      ischecked: false,
     };
     let arr1 = [];
     let deslist = JSON.parse(localStorage.getItem("tasks"));
@@ -67,19 +68,31 @@ function showdata() {
   let displaytitle = document.querySelector("#newli");
 
   task.forEach((arr1, index) => {
-    output += `<input class="mainc" type="checkbox"><b><li class="mainli" id="li" >${arr1.title}</li></b><i id="delete" class="fa-solid fa-trash-can" type="submit" onclick="deleteItem(${index})"></i>`;
+    output += `<input class="mainc" id="${index}mainch" type="checkbox" onclick ="linethrough(${index})"><b><li class="mainli" id="li" >${arr1.title}</li></b><i id="delete" class="fa-solid fa-trash-can" type="submit" onclick="deleteItem(${index})"></i>`;
     output += `<p>${arr1.description}</p>`;
     output += ` <h6>${arr1.tags}</h6>`;
   });
   displaytitle.innerHTML = output;
+
+  task.forEach((arr1, index) => {
+    document.getElementById(index + "mainch").checked = arr1.ischecked;
+    let licheck = document.getElementById(index + "mainch");
+    let deleteb = document.getElementById(index + "delete");
+    let finalli = document.getElementById("li");
+    if (licheck.checked == true) {
+      finalli.style.textDecoration = "line-through";
+      finalli.style.fontStyle = "italic";
+      finalli.style.color = "green";
+    } else {
+      finalli.style.textDecoration = "none";
+      finalli.style.fontStyle = "normal";
+      finalli.style.color = "black";
+    }
+  });
+
   let no = document.getElementById("newli").getElementsByTagName("li").length;
   {
     document.getElementById("total").value = no;
-  }
-  if (licheck.checked == true) {
-    document.getElementById("delete").value.style.display = "block";
-  } else {
-    document.getElementById("delete").value.style.display = "none";
   }
 }
 
@@ -106,5 +119,22 @@ function cleartext() {
     text1.value = "";
     des.value = "";
     tag.value = "";
+  }
+}
+function linethrough(index) {
+  let task = JSON.parse(localStorage.getItem("tasks"));
+  task[index].ischecked = !task[index].ischecked;
+  localStorage.setItem("tasks", JSON.stringify(task));
+  let licheck = document.getElementById(index + "mainch");
+  let deleteb = document.getElementById(index + "delete");
+  let finalli = document.getElementById(index + "li");
+  if (licheck.checked == true) {
+    finalli.style.textDecoration = "line-through";
+    finalli.style.fontStyle = "italic";
+    finalli.style.color = "green";
+  } else {
+    finalli.style.textDecoration = "none";
+    finalli.style.fontStyle = "normal";
+    finalli.style.color = "black";
   }
 }

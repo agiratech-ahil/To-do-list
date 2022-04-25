@@ -32,15 +32,20 @@ p {
   color: rgb(97, 97, 97);
 }
 .check {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   cursor: pointer;
-  margin-top: 2%;
+  margin-top: 2.5%;
   border-radius: 20px;
   background-color: white;
-  opacity: 0.6;
+  color: white;
+  opacity: 0.3;
   border: 1px rgb(219, 214, 214);
   box-shadow: 1px 1px 2px rgb(212, 211, 211);
+  margin-left: 2%;
+}
+#list {
+  margin-left: 2%;
 }
 #id {
   margin-left: 2%;
